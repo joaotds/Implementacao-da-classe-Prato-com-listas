@@ -1,43 +1,37 @@
 import java.util.ArrayList;
 import java.util.List;
-import java.util.Scanner;
 
 public class Main {
     public static void main(String[] args) {
         List<Prato> pratos = new ArrayList<>();
 
-        // Leitura dos dados dos pratos
-        Scanner scanner = new Scanner(System.in);
+        // ler dados
         for (int i = 1; i <= 3; i++) {
             System.out.println("Informe o nome do prato " + i + ":");
-            String nome = scanner.nextLine();
+            String nome = System.console().readLine();
 
             System.out.println("Informe o preço do prato " + i + ":");
-            double preco = scanner.nextDouble();
+            double preco = Double.parseDouble(System.console().readLine());
 
-            Prato prato = new Prato();
-            prato.nome = nome;
-            prato.preco = preco;
-
+            Prato prato = new Prato(nome, preco);
             pratos.add(prato);
         }
-        scanner.close();
 
-        // Impressão dos dados dos pratos
+        // dados dos pratos
         System.out.println("Dados dos pratos:");
         for (Prato prato : pratos) {
-            System.out.println("Nome: " + prato.nome);
-            System.out.println("Preço: R$" + prato.preco);
+            System.out.println("Nome: " + prato.getNome());
+            System.out.println("Preço: R$" + prato.getPreco());
             System.out.println();
         }
 
-        // Cálculo do valor total gasto
+        // valor gasto
         double valorTotal = 0;
         for (Prato prato : pratos) {
-            valorTotal += prato.preco;
+            valorTotal += prato.getPreco();
         }
 
-        // Impressão do valor total gasto
+        // imprime no console
         System.out.println("Valor total gasto: R$" + valorTotal);
     }
 }
